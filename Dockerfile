@@ -5,7 +5,7 @@ ENV HF_HOME=/app/models
 ENV MODELSCOPE_CACHE=/app/models
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends ffmpeg python3.12 python3.12-venv && \
+    apt-get install -y --no-install-recommends sox libsox-fmt-all ffmpeg python3.12 python3.12-venv && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
