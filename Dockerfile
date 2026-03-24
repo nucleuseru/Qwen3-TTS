@@ -27,14 +27,11 @@ WORKDIR /app
 # Ensure all RUN commands execute inside the conda environment wrapper
 SHELL ["conda", "run", "--no-capture-output", "-n", "qwen3-tts", "/bin/bash", "-c"]
 
-ENV MAX_JOBS=4
-
-RUN pip install -U qwen-tts && \
-    pip install -U flash-attn --no-build-isolation
+RUN pip install -U qwen-tts
 
 # Ensure Gradio binds to the network interface, enabling web access from outside the container
 ENV GRADIO_SERVER_NAME=0.0.0.0
 EXPOSE 8000
 
 # Set the entrypoint command to execute explicitly inside the activated environment
-CMD ["conda", "run", "--no-capture-output", "-n", "qwen3-tts", "qwen-tts-demo", "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice", "--ip", "0.0.0.0", "--port", "8000"]
+CMD ["conda", "run", "--no-capture-output", "-n", "qwen3-tts", "qwen-tts-demo", "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice", "--ip", "0.0.0.0", "--port", "8000", "--no-flash-attn"]
