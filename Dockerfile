@@ -1,6 +1,8 @@
 FROM nvidia/cuda:13.2.0-cudnn-runtime-ubuntu24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV HF_HOME=/app/models
+ENV MODELSCOPE_CACHE=/app/models
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3.12 python3.12-venv && \
@@ -11,7 +13,6 @@ RUN python3.12 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 WORKDIR /app
-
 COPY . .
 
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
