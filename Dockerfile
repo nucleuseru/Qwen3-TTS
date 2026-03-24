@@ -14,7 +14,7 @@ RUN curl -LO https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.
     rm Miniconda3-latest-Linux-x86_64.sh && \
     conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main && \
     conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r && \
-    conda create -y --name qwen3-tts -c conda-forge python=3.12 pip=25.0 && \
+    conda create -y --name qwen3-tts -c conda-forge python=3.12 && \
     conda install -n qwen3-tts -y nvidia/label/cuda-12.9.1::cuda-runtime nvidia/label/cudnn-9.10.0::cudnn && \
     conda clean -afy
 
